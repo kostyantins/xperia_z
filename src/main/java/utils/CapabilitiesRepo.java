@@ -2,6 +2,7 @@ package utils;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.remote.IOSMobileCapabilityType;
 import io.appium.java_client.remote.MobileBrowserType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.remote.MobilePlatform;
@@ -71,14 +72,14 @@ public class CapabilitiesRepo {
         return new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
 
-    public static IOSDriver IOS_CHROME_CAPABILITIES(final String emulatorName, final String iosVersion) throws MalformedURLException {
+    public static IOSDriver IOS_CHROME_CAPABILITIES(final String deviceName, final String iosVersion) throws MalformedURLException {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, emulatorName); //"emulator-5554"
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.IOS);
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, iosVersion);
         capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.SAFARI);
-        capabilities.setCapability(MobileCapabilityType.TAKES_SCREENSHOT, "true");
 
         return new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
