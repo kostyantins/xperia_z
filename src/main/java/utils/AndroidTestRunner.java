@@ -2,7 +2,10 @@ package utils;
 
 import com.codeborne.selenide.WebDriverRunner;
 import io.appium.java_client.android.AndroidDriver;
+import lombok.Getter;
+import lombok.Setter;
 import org.testng.annotations.BeforeSuite;
+import page_pbjects.LoginPage;
 
 import java.net.MalformedURLException;
 
@@ -10,9 +13,13 @@ import static utils.CapabilitiesRepo.BLABLACAR_CAPABILITIES;
 import static utils.CapabilitiesRepo.CHROME_CAPABILITIES;
 import static utils.CapabilitiesRepo.TWITTER_CAPABILITIES;
 
+@Getter
+@Setter
 public class AndroidTestRunner {
 
     private static final ThreadLocal<AndroidDriver> DRIVER = new ThreadLocal<>();
+
+    protected LoginPage loginPage = new LoginPage();
 
     public static AndroidDriver getWebDriver() throws MalformedURLException {
 

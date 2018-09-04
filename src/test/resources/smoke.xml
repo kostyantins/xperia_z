@@ -4,7 +4,7 @@
 <suite name="Smoke Suite">
     <test name="Smoke Tests">
         <classes>
-            <class name="WikiTest"/>
+            <class name="ather.WikiTest"/>
         </classes>
     </test>
 </suite>

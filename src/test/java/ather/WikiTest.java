@@ -1,3 +1,5 @@
+package ather;
+
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.testng.annotations.BeforeMethod;

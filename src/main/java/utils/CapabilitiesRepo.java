@@ -1,12 +1,14 @@
 package utils;
 
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileBrowserType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.remote.MobilePlatform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -56,16 +58,28 @@ public class CapabilitiesRepo {
 
     public static AndroidDriver BLABLACAR_CAPABILITIES(final String emulatorName, final String androidVersion) throws MalformedURLException {
 
-        File app = new File("/Volumes/HD/vcs/xperia_z/src/main/resources/app/com.twitter.android_v6.38.0-6110056_Android-4.1.apk");
+        File app = new File("/Volumes/HD/vcs/xperia_z/src/main/resources/app/blablacar-5-3-0.apk");
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, emulatorName);
         capabilities.setCapability(CapabilityType.VERSION, androidVersion);
         capabilities.setCapability("autoDismissAlerts", true);
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
-        capabilities.setCapability("appPackage", "com.twitter.android");
+        capabilities.setCapability("appPackage", "com.comuto");
         capabilities.setCapability("app", app.getAbsolutePath());
-        capabilities.setCapability("appActivity", "com.twitter.android.StartActivity");
+        capabilities.setCapability("appActivity", "com.comuto.proxy.ProxyActivity");
         return new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+    }
+
+    public static IOSDriver IOS_CHROME_CAPABILITIES(final String emulatorName, final String iosVersion) throws MalformedURLException {
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, emulatorName); //"emulator-5554"
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.IOS);
+        capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.SAFARI);
+        capabilities.setCapability(MobileCapabilityType.TAKES_SCREENSHOT, "true");
+
+        return new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
 }
